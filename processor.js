@@ -12,6 +12,12 @@ module.exports = async ({ path, width, height, quality, crop }) => {
     if (width) {
         if (crop !== null) {
             [cropHeight, cropWidth, left, top] = crop
+            if (parseInt(cropHeight) > metadata.height) {
+                cropHeight = metadata.height
+            }
+            if (parseInt(cropWidth) > metadata.width) {
+                cropWidth = metadata.width
+            }
             image.extract({
                 left: parseInt(left),
                 top: parseInt(top),
