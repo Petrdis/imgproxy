@@ -31,10 +31,11 @@ module.exports = async ({ path, width, height, quality, crop }) => {
         }
 
         options.width = parseInt(width);
-        height = parseInt(height);
-        options.height = height;
+        options.height = parseInt(height);
 
-        image.resize(options)
+        if (parseInt(metadata.width) >= options.width) {
+            image.resize(options)
+        }
     }
 
     if (quality && ['jpeg', 'tiff', 'webp'].includes(metadata.format)) {
